@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>HTML5 Barrage Player</title>
+	<style type="text/css">
+		body{
+			font-family: "微软雅黑";
+			font-size: 16px;
+			max-width: 980px;
+			margin:0 auto;
+			background: rgb(250,250,250);
+			color: rgb(80,80,80);
+		}
+
+		a{
+			text-decoration: none;
+		}
+
+		a:hover{
+			color: rgb(170,170,170);
+		}
+
+		header{
+			display: block;
+			text-align: center;
+			font-size: 24px;
+		}
+
+		.container{
+			border:1px solid rgb(226,226,226);
+			height: 545px;
+			margin-bottom: 10px;
+			box-shadow: 1px 2px 2px rgb(220,220,220);
+		}
+
+		.container-left{
+			float: left;
+			width: 680px;
+			height: 520px;
+		}
+
+		.container-left video{
+			width: 680px;
+			height: 520px;
+		}
+
+		.barrage{
+			position: absolute;
+			top: 100px;
+			left: 850px;
+			color: rgb(255,255,255);
+			font-size: 22px;
+			z-index: 1;
+			text-shadow: 1px 1px 1px #000000;
+		}
+
+		.barrage:hover{
+			cursor: default;
+		}
+
+		.container-bottom{
+			height: 25px;
+			width: 100%;
+			border-top: rgb(226,226,226);
+			margin-top: -4px;
+		}
+
+		.video-bottom-left{
+			float: left;
+			border-right: 1px solid rgb(233,233,233);
+			width: 80px;
+			height: 25px;
+		}
+
+		.container-bottom input[type="text"]{
+			font-family: "微软雅黑";
+			border: none;
+			height: 23px;
+			width: 527px;
+			margin: 0px;
+			box-shadow: 2px 2px 10px rgb(248,248,248) inset;
+		}
+
+		.container-bottom input[type="text"]:focus{
+			box-shadow: 2px 2px 10px rgb(233,233,233) inset;
+		}
+
+		.container-bottom input[type="button"]{
+			color: rgb(255,255,255);
+			border: none;
+			background: rgb(0,160,213);
+			height: 25px;
+			font-family: "微软雅黑";
+			margin-left: -5px;
+			width: 70px;
+			float: right;
+		}
+
+		.container-bottom input[type="button"]:hover{
+			background: rgb(50,179,211);
+			cursor: pointer;
+		}
+
+		.container-right{
+			float: right;
+			border-left:2px solid rgb(226,226,226);
+			height:520px;
+			width: 296px;
+		}
+
+		.right-top{
+			height: 74px;
+			background: rgb(253,253,253);
+			border-bottom: 2px solid rgb(226,226,226);
+		}
+
+		.right-top-left{
+			float: left;
+			width: 141px;
+			border-right: 1px solid rgb(226,226,226);
+			height: 66px;
+			padding: 5px;
+		}
+
+		.right-top-right{
+			float: left;
+			padding: 5px;
+			height: 64px;
+		}
+
+		.right-bottom{
+			height: 556px;
+		}
+
+		.right-bottom-top{
+			height: 23px;
+			background: rgb(248,248,248);
+			width: 296px;
+			font-size: 14px;
+			color: rgb(106,106,106);
+			border-bottom: 1px solid rgb(224,224,224);
+		}
+
+		.danmaku-table{
+			position: absolute;
+			font-size: 12px;
+			margin-left: 0px;
+			width: 300px;
+			margin-top: -2px;
+			height: 24px;
+			overflow-y:auto;
+		}
+
+		.danmaku-vtime{
+			padding-left: 4px;
+			width: 50px;
+			color: rgb(0,0,0);
+			height: 24px;
+		}
+
+		.danmaku-comment{
+			padding-left: 3px;
+			width: 154px;
+			height: 24px;
+		}
+
+		.danmaku-time{
+			padding-left: 4px;
+			width: 100px;
+			color: rgb(0,0,0);
+			height: 24px;
+			overflow: auto;
+		}
+
+		.danmaku-line:hover{
+			background: rgb(204,225,255);
+			height: 24px;
+		}
+
+		.right-bottom-top ul{
+			font-size: 14px;
+			list-style: none;
+			margin: 0px;
+			margin-left: -34px;
+		}
+
+		#video-time{
+			width: 44px;
+			margin-left: -6px;
+		}
+
+		#comment{
+			width: 140px;
+		}
+
+		#send-time{
+			width: 86px;
+		}
+
+		.right-bottom-top ul li{
+			float: left;
+			margin-right: 0px;
+			height: 23px;
+			padding-left: 6px;
+		}
+
+		.right-bottom-top ul li:hover{
+			background: rgb(204,225,255);
+			cursor: default;
+		}
+
+		.right-bottom-list{
+			height: 93.72197%;
+			width: 296px;
+			background: rgb(255,255,255);
+		}
+
+		footer{
+			position: relative;
+			bottom: 10px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			text-align: center;
+			width: 980px;
+			height: 20px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="container-left" id="danmaku-display">
+			<video id="video-main" src="你的视频.mp4" type="video/mp4" controls>
+				Your browser dosen't support HTML5 Video
+			</video>
+			<div class="container-bottom">
+				<div class="video-bottom-left">输入弹幕:</div>
+				<input type="text" placeholder="请在这里输入弹幕" />
+				<input type="button" value="发送">
+			</div>
+		</div>
+		<div class="container-right">
+			<div class="right-bottom">
+				<div class="right-bottom-top">
+					<ul>
+						<li id="video-time">时间</li>
+						<li id="comment">评论</li>
+						<li id="send-time">发送时间</li>
+					</ul>
+				</div>
+				<div class="right-bottom-list">
+					<table class="danmaku-table">
+						
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+	</footer>
+
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+	<script type="text/javascript" src="barrage.js"></script>
+</body>
+</html>
